@@ -1,4 +1,5 @@
-const app = require('./provider');
-const port = process.env.PORT || 3000;
+// app managed in test
+// const app = require('./provider');
+// const port = process.env.PORT || 3000;
 
-app.listen(port, () => console.log(`Listening on port ${port}...`));
+// app.listen(port, () => console.log(`Listening on port ${port}...`));
