@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
     "test:consumer": "jest consumer/consumer-contract.spec.js --testTimeout=20000",
     "can:i:deploy:consumer": "pact-broker can-i-deploy --pacticipant movie-consumer --version 1.0 --to staging --broker-base-url $PACT_BROKER_URL",
     "can:i:deploy:provider": "pact-broker can-i-deploy --pacticipant movie-provider --version 1.0.0 --to staging --broker-base-url $PACT_BROKER_URL",
     "publish:pact": "pact-broker publish ./pacts --consumer-app-version 1.0 --broker-base-url $PACT_BROKER_URL --broker-token $PACT_BROKER_TOKEN",
-    "start:provider": "node provider/provider-service.js",
-    "test:provider": "jest provider/provider-contract.spec.js --testTimeout=20000",
+    "test:provider": "jest provider/provider-contract.spec.ts --testTimeout=20000",
     "start:and:test:provider": "node provider/provider-service.js & jest provider/provider-contract.spec.js --testTimeout=20000",
     "create:provider:tag": "pact-broker create-version-tag --pacticipant movie-provider --version 1.0.0 --tag staging --broker-base-url $PACT_BROKER_URL",
     "create:consumer:tag": "pact-broker create-version-tag --pacticipant movie-consumer --version 1.0 --tag staging --broker-base-url $PACT_BROKER_URL"
@@ -23,7 +23,14 @@
   },
   "devDependencies": {
     "@pact-foundation/pact": "9.17.2",
+    "@types/express": "^4.17.13",
+    "@types/jest": "^27.4.1",
+    "@types/joi": "^17.2.3",
+    "@types/node": "^17.0.22",
     "axios": "0.26.0",
-    "jest": "27.5.1"
+    "jest": "27.5.1",
+    "ts-jest": "^27.1.4",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.3"
   }
 }
