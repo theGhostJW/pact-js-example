@@ -2,13 +2,6 @@
 
 An example test framework using Pact-js to validate contract testing between consumer and provider. The application that we are testing is a simple movies API which returns a list of movies.
 
-## note needs to run with npm not yarn - depends on node_modules
-  >> npm i
-  >> npm run start:provider
-  >> npm run test:provider
-
-_start:and:test:provider does not work_
-
 ## Running the tests
 
 Install dependencies
