@@ -84,7 +84,7 @@ const callSimple = () => {
   })
 }
 
-describe.only('Pact Verification', () => {
+describe('Pact Verification', () => {
 
   let sv: http.Server;
   beforeAll(done => {
@@ -135,19 +135,21 @@ describe('Pact Verification', () => {
 
   let movieServer: http.Server
   beforeAll(done => {
-    movieServer = movieApp.listen(port, () => {
+    movieServer = movieApp.listen(moviePort, () => {
       console.log(`Listening on port ${moviePort}...`)
-      movieApp.emit("movie app started")
+      movieApp.emit("app_started")
       done()
     })
   })
 
 
-  test('should validate the expectations of movie-consumer', () => {
-    return movieVerifier.verifyProvider()
+  test('should validate the expectations of movie-consumer', done => {
+    movieVerifier
+      .verifyProvider()
+      .finally(done)
   });
 
   afterAll(done => {
     movieServer.close(done)
   })
-});
+})

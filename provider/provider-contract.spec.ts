@@ -41,4 +41,49 @@ describe('Pact Verification', () => {
   afterAll(done => {
     sv.close(done)
   })
-});
+})
+
+
+
+//----
+const movieProviderUrl = 'http://localhost:3001/';
+const moviePort: number = 3001;
+
+const movieOptions = {
+  provider: 'movie-provider',
+  providerBaseUrl: movieProviderUrl,
+  // pactBrokerUrl,
+  // pactBrokerToken,
+  pactUrls: [path.resolve(process.cwd(), "pacts", "movie-consumer-movie-provider.json")],
+  providerVersion: '1.0.0',
+  publishVerificationResult: true,
+  // logLevel: 'info'
+};
+
+// having trouble getting logLevel to type check
+// TODO fix  
+// @ts-ignore
+const movieVerifier = new Verifier(movieOptions);
+
+describe.only('Pact Verification', () => {
+
+  let movieServer: http.Server
+  beforeAll(done => {
+    movieServer = app.listen(moviePort, () => {
+      console.log(`Listening on port ${moviePort}...`)
+      app.emit("app_started")
+      done()
+    })
+  })
+
+
+  test('should validate the expectations of movie-consumer', done => {
+    movieVerifier
+      .verifyProvider()
+      .finally(done)
+  });
+
+  afterAll(done => {
+    movieServer.close(done)
+  })
+})
