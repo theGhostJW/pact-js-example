@@ -16,6 +16,7 @@ const options = {
   pactUrls: [path.resolve(process.cwd(), "pacts", "movie-consumer-movie-provider.json")],
   providerVersion: '1.0.0',
   publishVerificationResult: true,
+  // logLevel: 'info'
 };
 
 const verifier = new Verifier(options);
