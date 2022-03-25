@@ -11,8 +11,8 @@ const port = process.env.PORT || 3000;
 const options = {
   provider: 'movie-provider',
   providerBaseUrl,
-  pactBrokerUrl,
-  pactBrokerToken,
+  // pactBrokerUrl,
+  // pactBrokerToken,
   pactUrls: [path.resolve(process.cwd(), "pacts", "movie-consumer-movie-provider.json")],
   providerVersion: '1.0.0',
   publishVerificationResult: true,
