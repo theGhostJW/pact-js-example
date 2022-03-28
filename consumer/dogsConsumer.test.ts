@@ -34,7 +34,7 @@ describe("dogs service", () => {
             willRespondWith: {
               status: 200,
               headers: {
-                "Content-Type": "application/json",
+                "Content-Type": "application/json; charset=utf-8",
               },
               body: EXPECTED_DOGS_BODY,
             },
@@ -78,7 +78,7 @@ describe("dogs service", () => {
             willRespondWith: {
               status: 200,
               headers: {
-                "Content-Type": "application/json",
+                "Content-Type": "application/json; charset=utf-8",
               },
               body: EXPECTED_DOG1_BODY,
             },

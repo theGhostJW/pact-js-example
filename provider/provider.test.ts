@@ -2,7 +2,7 @@ import { Verifier, VerifierOptions } from '@pact-foundation/pact'
 import axios from 'axios';
 import http from 'http'
 import path from 'path';
-import { dogUrl, app as dogApp, /* port, */ url, dogPort } from './dogProvider';
+import { dogUrl, dogServer, /* port, */ url, dogPort } from './dogProvider';
 import { app as movieApp } from './movieProvider';
 const expect = require("chai").expect
 
@@ -24,13 +24,13 @@ const options = {
 // @ts-ignore
 const verifier = new Verifier(options);
 
-describe.only('dog pact verification', () => {
+describe('dog pact verification', () => {
 
   let sv: http.Server;
   beforeAll(done => {
-    sv = dogApp.listen(dogPort, () => {
+    sv = dogServer.listen(dogPort, () => {
       console.log(`Listening on port ${dogPort}...`)
-      dogApp.emit("app_started")
+      dogServer.emit("app_started")
       done()
     })
   })
