@@ -62,11 +62,12 @@ const port = process.env.PORT || 3000;
 const options = {
     provider: 'movie-provider',
     providerBaseUrl,
-    pactUrls: [path_1.default.resolve(process.cwd(), "pacts", "myconsumer-myprovider.json")],
+    pactUrls: [path_1.default.resolve(process.cwd(), "pacts", "dog-consumer-dog-provider.json")],
     providerVersion: '1.0.0',
     publishVerificationResult: true,
     logLevel: 'info'
-};
+}
+
 // having trouble getting logLevel to type check
 // TODO fix  
 // @ts-ignore
@@ -79,7 +80,7 @@ const callSimple = () => {
         headers: { Accept: "application/json" },
     });
 };
-describe.only('Pact Verification', () => {
+describe.only('dog service', () => {
     let sv;
     beforeAll(done => {
         sv = provider2_1.app.listen(port, () => {
@@ -106,7 +107,9 @@ describe.only('Pact Verification', () => {
     afterAll(done => {
         sv.close(done);
     });
-});
+})
+
+
 const movieProviderUrl = 'http://localhost:3001/';
 const moviePort = 3001;
 const movieOptions = {
@@ -123,7 +126,7 @@ const movieOptions = {
 // TODO fix  
 // @ts-ignore
 const movieVerifier = new pact_1.Verifier(movieOptions);
-describe('Pact Verification', () => {
+describe('movie service verification', () => {
     let movieServer;
     beforeAll(done => {
         movieServer = provider_1.app.listen(port, () => {

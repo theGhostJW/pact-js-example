@@ -1,12 +1,13 @@
 import { Verifier } from '@pact-foundation/pact';
 import path from 'path';
-import { app } from './provider'
+import { app } from './movieProvider'
 import http from 'http'
 const pactBrokerUrl = process.env.PACT_BROKER_URL;
 const providerBaseUrl =
   process.env.PROVIDER_BASE_URL || 'http://localhost:3000/';
 const pactBrokerToken = process.env.PACT_BROKER_TOKEN;
 
+/*
 const port = process.env.PORT || 3000;
 
 const options = {
@@ -87,3 +88,5 @@ describe.only('Pact Verification', () => {
     movieServer.close(done)
   })
 })
+
+*/

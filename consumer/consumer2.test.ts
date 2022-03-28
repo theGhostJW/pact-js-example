@@ -72,7 +72,7 @@ describe("get /dog/1", () => {
             method: "GET",
             path: "/dogs/1",
             headers: {
-              Accept: "application/json",
+              Accept: "application/json"
             },
           },
           willRespondWith: {

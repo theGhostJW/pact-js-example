@@ -8,6 +8,7 @@
   "interactions": [
     {
       "description": "a request to list all movies",
+      "providerState": "I have a list of movies",
       "request": {
         "method": "GET",
         "path": "/movies"
@@ -60,57 +61,28 @@
       }
     },
     {
-      "description": "a request to list all movies",
-      "providerState": "I have a list of movies",
+      "description": "a request for all dogs",
+      "providerState": "i have a list of dogs",
       "request": {
         "method": "GET",
-        "path": "/movies"
+        "path": "/dogs",
+        "headers": {
+          "Accept": "application/json"
+        }
       },
       "response": {
         "status": 200,
         "headers": {
+          "Content-Type": "application/json"
         },
         "body": [
           {
-            "id": 1,
-            "name": "Movie 1",
-            "year": 2008
+            "dog": 1
           },
           {
-            "id": 1,
-            "name": "Movie 1",
-            "year": 2008
-          },
-          {
-            "id": 1,
-            "name": "Movie 1",
-            "year": 2008
-          },
-          {
-            "id": 1,
-            "name": "Movie 1",
-            "year": 2008
-          },
-          {
-            "id": 1,
-            "name": "Movie 1",
-            "year": 2008
+            "dog": 2
           }
-        ],
-        "matchingRules": {
-          "$.body": {
-            "min": 5
-          },
-          "$.body[*].*": {
-            "match": "type"
-          },
-          "$.body[*].name": {
-            "match": "type"
-          },
-          "$.body[*].year": {
-            "match": "type"
-          }
-        }
+        ]
       }
     }
   ],

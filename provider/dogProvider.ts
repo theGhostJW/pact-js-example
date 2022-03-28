@@ -2,8 +2,8 @@
 import express from 'express'
 
 export const url = "http://127.0.0.1"
-export const port = 3000
-export const fullUrl = `${url}:${port}`
+export const dogPort = 3000
+export const dogUrl = `${url}:${dogPort}`
 
 const appPriv = express()
 
@@ -19,10 +19,7 @@ appPriv.get('/dogs/1', function (_req, res) {
     [
       {
         "dog": 1
-      },
-      {
-        "dog": 2
-      },
+      }
     ]
   )
 })
@@ -43,7 +40,7 @@ appPriv.get('/dogs', function (_req, res) {
 })
 
 if (require.main === module) {
-  appPriv.listen(port, () => {
+  appPriv.listen(dogPort, () => {
     console.log('appPriv has started');
   });
 }
