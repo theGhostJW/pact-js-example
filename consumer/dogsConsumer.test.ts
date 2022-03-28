@@ -4,12 +4,13 @@ import { allDogsRequest, EXPECTED_DOGS_BODY, EXPECTED_DOG1_BODY, dog1Request } f
 
 
 const url = "http://127.0.0.1"
-const port = 8992
+const port = 8993
 
-const provider = () => new Pact({
+const dogPact = new Pact({
   port: port,
   consumer: "dog-consumer",
   provider: "dog-provider",
+  pactfileWriteMode: 'update',
   logLevel: 'info'
 })
 
@@ -17,11 +18,10 @@ const provider = () => new Pact({
 describe("dogs service", () => {
 
   describe("all dogs request", () => {
-    let p = provider()
     beforeAll(() =>
-      p.setup()
+      dogPact.setup()
         .then(() => {
-          p.addInteraction({
+          dogPact.addInteraction({
             state: "i have a list of dogs",
             uponReceiving: "a request for all dogs",
             withRequest: {
@@ -55,16 +55,16 @@ describe("dogs service", () => {
 
     })
 
-    afterEach(() => p.verify())
-    afterAll(() => p.finalize())
+    afterEach(() => dogPact.verify())
+    afterAll(() => dogPact.finalize())
 
   })
+  
 
   describe("get /dog/1", () => {
-    let p = provider()
     beforeAll(() =>
-      p.setup().then(() => {
-        p.addInteraction(
+      dogPact.setup().then(() => {
+        dogPact.addInteraction(
           {
             state: "i have a list of dogs",
             uponReceiving: "a request for a single dog",
@@ -101,8 +101,8 @@ describe("dogs service", () => {
     })
 
 
-    afterEach(() => p.verify())
-    afterAll(() => p.finalize())
+    afterEach(() => dogPact.verify())
+    afterAll(() => dogPact.finalize())
 
   }
   )

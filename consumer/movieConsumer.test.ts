@@ -4,8 +4,14 @@ import path from 'path';
 import { like, eachLike } from '@pact-foundation/pact/src/dsl/matchers';
 
 
+test('stub', async () => {
+})
+
+
+
+
 const port = 8992;
-const provider = new Pact({
+const moviePact = new Pact({
   consumer: 'movie-consumer',
   provider: 'movie-provider',
   port,
@@ -15,12 +21,12 @@ const provider = new Pact({
   logLevel: 'info',
 });
 
-/*
+
 describe('Movies Service', () => {
   describe('When a request to list all movies is made', () => {
     beforeAll(() =>
-      provider.setup().then(() => {
-        provider.addInteraction({
+      moviePact.setup().then(() => {
+        moviePact.addInteraction({
           state: "I have a list of movies",
           uponReceiving: 'a request to list all movies',
           withRequest: {
@@ -43,14 +49,12 @@ describe('Movies Service', () => {
     )
 
     test('should return the correct data', async () => {
-      const response = await fetchMovies(provider.mockService.baseUrl);
+      const response = await fetchMovies(moviePact.mockService.baseUrl);
       expect(response).toMatchSnapshot();
     })
 
 
-    afterEach(() => provider.verify())
-    afterAll(() => provider.finalize())
-  });
-});
-
-*/
+    afterEach(() => moviePact.verify())
+    afterAll(() => moviePact.finalize())
+  })
+})
