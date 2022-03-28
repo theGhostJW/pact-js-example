@@ -61,54 +61,48 @@ describe("dogs service", () =>
 )
 
 
-  // describe("get /dog/1", () => {
-  //   beforeAll(() =>
-  //     provider.setup().then(() => {
-  //       provider.addInteraction(
-  //         {
-  //           state: "i have a list of dogs",
-  //           uponReceiving: "a request for a single dog",
-  //           withRequest: {
-  //             method: "GET",
-  //             path: "/dogs/1",
-  //             headers: {
-  //               Accept: "application/json",
-  //             },
-  //           },
-  //           willRespondWith: {
-  //             status: 200,
-  //             headers: {
-  //               "Content-Type": "application/json",
-  //             },
-  //             body: EXPECTED_DOG1_BODY,
-  //           },
-  //         }
-  //       )
-  //     }
-  //     )
-  //   )
-  // }
+describe("get /dog/1", () => {
+  beforeAll(() =>
+    provider.setup().then(() => {
+      provider.addInteraction(
+        {
+          state: "i have a list of dogs",
+          uponReceiving: "a request for a single dog",
+          withRequest: {
+            method: "GET",
+            path: "/dogs/1",
+            headers: {
+              Accept: "application/json",
+            },
+          },
+          willRespondWith: {
+            status: 200,
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: EXPECTED_DOG1_BODY,
+          },
+        }
+      )
+    }
+    )
+  )
+
+  it("returns the correct response", done => {
+    const urlAndPort = {
+      url: url,
+      port: port,
+    }
+
+    dog1Request(urlAndPort).then(response => {
+      expect(response.data).to.eql(EXPECTED_DOG1_BODY)
+      done()
+    }, done)
+  })
 
 
-//     it("returns the correct response", done => {
-//         const urlAndPort = {
-//           url: url,
-//           port: port,
-//         }
+  afterEach(() => provider.verify())
+  afterAll(() => provider.finalize())
 
-//         dog1Request(urlAndPort).then(response => {
-//           expect(response.data).to.eql(EXPECTED_DOG1_BODY)
-//           done()
-//         }, done)
-//       })
-
-//     afterEach(() => provider.verify())
-//     afterAll(() => provider.finalize())
-//   })
-
-
-
-
-// )
-
-
+}
+)
