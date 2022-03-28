@@ -12,6 +12,7 @@ const provider = new Pact({
   pactfileWriteMode: 'update',
   logLevel: 'INFO',
 });
+
 describe('Movies Service', () => {
   describe('When a request to list all movies is made', () => {
     beforeAll(() =>
