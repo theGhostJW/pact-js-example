@@ -1,5 +1,5 @@
 import { Pact } from '@pact-foundation/pact';
-import { fetchMovies } from './mockConsumer';
+import { fetchMovies } from './moveMockService';
 import path from 'path';
 import { like, eachLike } from '@pact-foundation/pact/src/dsl/matchers';
 

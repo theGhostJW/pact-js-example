@@ -1,6 +1,6 @@
 const expect = require("chai").expect
 import { InteractionObject, Pact } from "@pact-foundation/pact"
-import { allDogsRequest, EXPECTED_DOGS_BODY, EXPECTED_DOG1_BODY, dog1Request } from './consumerMockService'
+import { allDogsRequest, EXPECTED_DOGS_BODY, EXPECTED_DOG1_BODY, dog1Request } from './dogMockService'
 
 
 const url = "http://127.0.0.1"
