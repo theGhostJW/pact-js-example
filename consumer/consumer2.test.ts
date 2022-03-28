@@ -6,7 +6,7 @@ import { allDogsRequest, EXPECTED_DOGS_BODY, EXPECTED_DOG1_BODY, dog1Request } f
 const url = "http://127.0.0.1"
 const port = 8992
 
-const provider = new Pact({
+const provider = () => new Pact({
   port: port,
   consumer: "dog-consumer",
   provider: "dog-provider",
@@ -14,14 +14,14 @@ const provider = new Pact({
 })
 
 
-describe("dogs service", () =>
+describe("dogs service", () => {
+
   describe("all dogs request", () => {
-
+    let p = provider()
     beforeAll(() =>
-
-      provider.setup()
+      p.setup()
         .then(() => {
-          provider.addInteraction({
+          p.addInteraction({
             state: "i have a list of dogs",
             uponReceiving: "a request for all dogs",
             withRequest: {
@@ -43,7 +43,7 @@ describe("dogs service", () =>
         )
     )
 
-    it("returns all doge record", done => {
+    it("returns all dog records", done => {
       const urlAndPort = {
         url: url,
         port: port,
@@ -55,54 +55,59 @@ describe("dogs service", () =>
 
     })
 
-    afterEach(() => provider.verify())
-    afterAll(() => provider.finalize())
+    afterEach(() => p.verify())
+    afterAll(() => p.finalize())
+
   })
-)
 
-
-describe("get /dog/1", () => {
-  beforeAll(() =>
-    provider.setup().then(() => {
-      provider.addInteraction(
-        {
-          state: "i have a list of dogs",
-          uponReceiving: "a request for a single dog",
-          withRequest: {
-            method: "GET",
-            path: "/dogs/1",
-            headers: {
-              Accept: "application/json"
+  describe("get /dog/1", () => {
+    let p = provider()
+    beforeAll(() =>
+      p.setup().then(() => {
+        p.addInteraction(
+          {
+            state: "i have a list of dogs",
+            uponReceiving: "a request for a single dog",
+            withRequest: {
+              method: "GET",
+              path: "/dogs/1",
+              headers: {
+                Accept: "application/json"
+              },
             },
-          },
-          willRespondWith: {
-            status: 200,
-            headers: {
-              "Content-Type": "application/json",
+            willRespondWith: {
+              status: 200,
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: EXPECTED_DOG1_BODY,
             },
-            body: EXPECTED_DOG1_BODY,
-          },
-        }
+          }
+        )
+      }
       )
-    }
     )
+
+    it("returns the correct response", done => {
+      const urlAndPort = {
+        url: url,
+        port: port,
+      }
+
+      dog1Request(urlAndPort).then(response => {
+        expect(response.data).to.eql(EXPECTED_DOG1_BODY)
+        done()
+      }, done)
+    })
+
+
+    afterEach(() => p.verify())
+    afterAll(() => p.finalize())
+
+  }
   )
 
-  it("returns the correct response", done => {
-    const urlAndPort = {
-      url: url,
-      port: port,
-    }
-
-    dog1Request(urlAndPort).then(response => {
-      expect(response.data).to.eql(EXPECTED_DOG1_BODY)
-      done()
-    }, done)
-  })
 
 
-  afterEach(() => provider.verify())
-  afterAll(() => provider.finalize())
 
-}
-)
+})

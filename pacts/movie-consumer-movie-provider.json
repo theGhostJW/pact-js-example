@@ -59,31 +59,6 @@
           }
         }
       }
-    },
-    {
-      "description": "a request for all dogs",
-      "providerState": "i have a list of dogs",
-      "request": {
-        "method": "GET",
-        "path": "/dogs",
-        "headers": {
-          "Accept": "application/json"
-        }
-      },
-      "response": {
-        "status": 200,
-        "headers": {
-          "Content-Type": "application/json"
-        },
-        "body": [
-          {
-            "dog": 1
-          },
-          {
-            "dog": 2
-          }
-        ]
-      }
     }
   ],
   "metadata": {
