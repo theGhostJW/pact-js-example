@@ -13,13 +13,33 @@ appPriv.get('/', (req, res) => {
 
 
 appPriv.get('/dogs/1', function (_req, res) {
-  res.setHeader("Accept", "appPrivlication/json")
-  res.sendStatus(200)
+  res.type('application/json') 
+  res.status(200)
+  res.json(
+    [
+      {
+        "dog": 1
+      },
+      {
+        "dog": 2
+      },
+    ]
+  )
 })
 
 appPriv.get('/dogs', function (_req, res) {
-  res.setHeader("Accept", "appPrivlication/json")
-  res.sendStatus(200)
+  res.type('application/json') 
+  res.status(200)
+  res.json(
+    [
+      {
+        "dog": 1
+      },
+      {
+        "dog": 2
+      },
+    ]
+  )
 })
 
 if (require.main === module) {
