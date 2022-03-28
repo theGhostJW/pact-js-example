@@ -4,12 +4,6 @@ import path from 'path';
 import { like, eachLike } from '@pact-foundation/pact/src/dsl/matchers';
 
 
-test('stub', async () => {
-})
-
-
-
-
 const port = 8992;
 const moviePact = new Pact({
   consumer: 'movie-consumer',
