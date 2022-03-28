@@ -59,7 +59,7 @@ describe("dogs service", () => {
     afterAll(() => dogPact.finalize())
 
   })
-  
+
 
   describe("get /dog/1", () => {
     beforeAll(() =>
@@ -87,6 +87,7 @@ describe("dogs service", () => {
       }
       )
     )
+
 
     it("returns the correct response", done => {
       const urlAndPort = {
