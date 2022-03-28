@@ -1,7 +1,9 @@
 import { Pact } from '@pact-foundation/pact';
-const { like, eachLike } = require('@pact-foundation/pact').Matchers;
-import { fetchMovies } from './consumer';
+import { fetchMovies } from './mockConsumer';
 import path from 'path';
+import { like, eachLike } from '@pact-foundation/pact/src/dsl/matchers';
+
+
 const port = 8992;
 const provider = new Pact({
   consumer: 'movie-consumer',
