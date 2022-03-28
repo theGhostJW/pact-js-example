@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "test:consumer": "jest consumer/consumer-contract.spec.js --testTimeout=20000",
+    "test:consumer": "jest consumer/*.test.ts --testTimeout=20000",
     "test:consumer2": "jest consumer2.test.ts --testTimeout=20000",
     "can:i:deploy:consumer": "pact-broker can-i-deploy --pacticipant movie-consumer --version 1.0 --to staging --broker-base-url $PACT_BROKER_URL",
     "can:i:deploy:provider": "pact-broker can-i-deploy --pacticipant movie-provider --version 1.0.0 --to staging --broker-base-url $PACT_BROKER_URL",

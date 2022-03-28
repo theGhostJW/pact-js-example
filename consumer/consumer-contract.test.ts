@@ -1,7 +1,7 @@
-const { Pact } = require('@pact-foundation/pact');
+import { Pact } from '@pact-foundation/pact';
 const { like, eachLike } = require('@pact-foundation/pact').Matchers;
-const { fetchMovies } = require('./consumer');
-const path = require('path');
+import { fetchMovies } from './consumer';
+import path from 'path';
 const port = 8992;
 const provider = new Pact({
   consumer: 'movie-consumer',
@@ -10,7 +10,7 @@ const provider = new Pact({
   log: path.resolve(process.cwd(), 'logs', 'pact.log'),
   dir: path.resolve(process.cwd(), 'pacts'),
   pactfileWriteMode: 'update',
-  logLevel: 'INFO',
+  logLevel: 'info',
 });
 
 describe('Movies Service', () => {
