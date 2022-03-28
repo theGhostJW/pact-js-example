@@ -15,6 +15,7 @@ const provider = new Pact({
   logLevel: 'info',
 });
 
+/*
 describe('Movies Service', () => {
   describe('When a request to list all movies is made', () => {
     beforeAll(() =>
@@ -51,3 +52,5 @@ describe('Movies Service', () => {
     afterAll(() => provider.finalize())
   });
 });
+
+*/
