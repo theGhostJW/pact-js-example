@@ -20,6 +20,7 @@ describe('Movies Service', () => {
     beforeAll(() =>
       provider.setup().then(() => {
         provider.addInteraction({
+          state: "I have a list of movies",
           uponReceiving: 'a request to list all movies',
           withRequest: {
             method: 'GET',
@@ -27,33 +28,6 @@ describe('Movies Service', () => {
           },
           willRespondWith: {
             status: 200,
-            // body: [
-            //   {
-            //     "id": 1,
-            //     "name": "The Shawshank Redemption",
-            //     "year": 1994
-            //   },
-            //   {
-            //     "id": 2,
-            //     "name": "The Dark Knight",
-            //     "year": 2008
-            //   },
-            //   {
-            //     "id": 3,
-            //     "name": "Amelie",
-            //     "year": 2001
-            //   },
-            //   {
-            //     "id": 4,
-            //     "name": "Fight Club",
-            //     "year": 1994
-            //   },
-            //   {
-            //     "id": 5,
-            //     "name": "The Lion King",
-            //     "year": 1994
-            //   }
-            // ]
             body: eachLike(
               {
                 id: 1,
@@ -63,14 +37,17 @@ describe('Movies Service', () => {
               { min: 5 }
             ),
           },
-        });
+        })
       })
-    );
+    )
+
     test('should return the correct data', async () => {
       const response = await fetchMovies(provider.mockService.baseUrl);
       expect(response).toMatchSnapshot();
-    });
-    afterEach(() => provider.verify());
-    afterAll(() => provider.finalize());
+    })
+
+
+    afterEach(() => provider.verify())
+    afterAll(() => provider.finalize())
   });
 });

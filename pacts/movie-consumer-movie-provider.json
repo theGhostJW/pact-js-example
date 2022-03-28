@@ -58,6 +58,60 @@
           }
         }
       }
+    },
+    {
+      "description": "a request to list all movies",
+      "providerState": "I have a list of movies",
+      "request": {
+        "method": "GET",
+        "path": "/movies"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+        },
+        "body": [
+          {
+            "id": 1,
+            "name": "Movie 1",
+            "year": 2008
+          },
+          {
+            "id": 1,
+            "name": "Movie 1",
+            "year": 2008
+          },
+          {
+            "id": 1,
+            "name": "Movie 1",
+            "year": 2008
+          },
+          {
+            "id": 1,
+            "name": "Movie 1",
+            "year": 2008
+          },
+          {
+            "id": 1,
+            "name": "Movie 1",
+            "year": 2008
+          }
+        ],
+        "matchingRules": {
+          "$.body": {
+            "min": 5
+          },
+          "$.body[*].*": {
+            "match": "type"
+          },
+          "$.body[*].name": {
+            "match": "type"
+          },
+          "$.body[*].year": {
+            "match": "type"
+          }
+        }
+      }
     }
   ],
   "metadata": {
